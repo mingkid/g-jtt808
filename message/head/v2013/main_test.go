@@ -3,7 +3,7 @@ package v2013
 import (
 	"testing"
 
-	"github.com/mingkid/jtt808/message/msgcomm"
+	"github.com/mingkid/g-jtt808/message/msgcomm"
 )
 
 func TestMsgHead_ID(t *testing.T) {

@@ -4,8 +4,8 @@ import (
 	"io"
 	"time"
 
-	jt808b "github.com/mingkid/jtt808/binary"
-	"github.com/mingkid/jtt808/message/body/v2013/extra0200"
+	jt808b "github.com/mingkid/g-jtt808/binary"
+	"github.com/mingkid/g-jtt808/message/body/v2013/extra0200"
 )
 
 type M0200 struct {

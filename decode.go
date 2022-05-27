@@ -4,8 +4,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/mingkid/jtt808/binary"
-	"github.com/mingkid/jtt808/util"
+	"github.com/mingkid/g-jtt808/binary"
 )
 
 type Decoder struct {
@@ -55,7 +54,7 @@ func (d Decoder) decodeString(r binary.ErrReader, v reflect.Value, f reflect.Str
 		t      string
 		length int
 	)
-	t, length, r.Err = util.Tag(f)
+	t, length, r.Err = Tag(f)
 
 	switch t {
 	case "bcd":
@@ -67,7 +66,7 @@ func (d Decoder) decodeString(r binary.ErrReader, v reflect.Value, f reflect.Str
 
 func (d Decoder) decodeSlice(r binary.ErrReader, v reflect.Value, f reflect.StructField) {
 	var length int
-	if _, length, r.Err = util.Tag(f); length == 0 {
+	if _, length, r.Err = Tag(f); length == 0 {
 		v.Set(reflect.ValueOf(r.ReadBytes(r.R.Len())))
 	} else {
 		v.Set(reflect.ValueOf(r.ReadBytes(length)))

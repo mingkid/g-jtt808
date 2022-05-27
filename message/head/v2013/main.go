@@ -1,6 +1,6 @@
 package v2013
 
-import "github.com/mingkid/jtt808/message/msgcomm"
+import "github.com/mingkid/g-jtt808/message/msgcomm"
 
 type MsgHead struct {
 	RawID          uint16 `jtt808:""`

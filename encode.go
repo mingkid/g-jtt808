@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/mingkid/jtt808/binary"
-	"github.com/mingkid/jtt808/message/head"
-	"github.com/mingkid/jtt808/util"
+	"github.com/mingkid/g-jtt808/binary"
+	"github.com/mingkid/g-jtt808/message/head"
 )
 
 type Encoder struct {
@@ -78,7 +77,7 @@ func (e Encoder) encodeString(s string, w binary.ErrWrite, f reflect.StructField
 		t      string
 		length int
 	)
-	t, length, w.Err = util.Tag(f)
+	t, length, w.Err = Tag(f)
 
 	// 根据Tag中的定义，为string类型的数据做不同的bytes转换
 	switch t {

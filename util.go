@@ -1,4 +1,4 @@
-package util
+package jtt808
 
 import (
 	"encoding/hex"
