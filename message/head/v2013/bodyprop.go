@@ -3,8 +3,8 @@ package v2013
 import (
 	"errors"
 
-	"github.com/mingkid/jtt808/message/head"
-	"github.com/mingkid/jtt808/message/msgcomm"
+	"github.com/mingkid/g-jtt808/message/head"
+	"github.com/mingkid/g-jtt808/message/msgcomm"
 )
 
 type MsgBodyProperty uint16

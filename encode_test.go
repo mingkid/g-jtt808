@@ -4,10 +4,10 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/mingkid/jtt808/message"
-	bv2013 "github.com/mingkid/jtt808/message/body/v2013"
-	hv2013 "github.com/mingkid/jtt808/message/head/v2013"
-	"github.com/mingkid/jtt808/message/msgcomm"
+	"github.com/mingkid/g-jtt808/message"
+	bv2013 "github.com/mingkid/g-jtt808/message/body/v2013"
+	hv2013 "github.com/mingkid/g-jtt808/message/head/v2013"
+	"github.com/mingkid/g-jtt808/message/msgcomm"
 )
 
 func TestEncoder_M8001(t *testing.T) {

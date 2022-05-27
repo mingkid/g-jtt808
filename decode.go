@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/mingkid/jtt808/binary"
-	"github.com/mingkid/jtt808/util"
+	"github.com/mingkid/g-jtt808/binary"
+	"github.com/mingkid/g-jtt808/util"
 )
 
 type Decoder struct {

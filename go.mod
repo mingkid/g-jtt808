@@ -1,4 +1,4 @@
-module github.com/mingkid/jtt808
+module github.com/mingkid/g-jtt808
 
 go 1.18
 

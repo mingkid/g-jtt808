@@ -1,6 +1,6 @@
 package head
 
-import "github.com/mingkid/jtt808/message/msgcomm"
+import "github.com/mingkid/g-jtt808/message/msgcomm"
 
 type Head interface {
 	ID() msgcomm.MsgID

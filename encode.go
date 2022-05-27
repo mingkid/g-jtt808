@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/mingkid/jtt808/binary"
-	"github.com/mingkid/jtt808/message/head"
-	"github.com/mingkid/jtt808/util"
+	"github.com/mingkid/g-jtt808/binary"
+	"github.com/mingkid/g-jtt808/message/head"
+	"github.com/mingkid/g-jtt808/util"
 )
 
 type Encoder struct {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/mingkid/jtt808/binary"
+	"github.com/mingkid/g-jtt808/binary"
 )
 
 // Unescape 反转义
