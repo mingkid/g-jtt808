@@ -3,6 +3,22 @@ package extra0200
 // VehSignalStatus 车辆信号状态
 type VehSignalStatus uint32
 
+type LoadStatus int
+
+const (
+	NoLoad   LoadStatus = 00
+	HalfLoad            = 01
+	HoldLoad            = 10
+	FullLoad            = 11
+)
+
+var LoadStatusMap = map[int]LoadStatus{
+	00: NoLoad,
+	01: HalfLoad,
+	10: HoldLoad,
+	11: FullLoad,
+}
+
 // LowBeam 近光灯
 func (s VehSignalStatus) LowBeam() bool {
 	return ((s >> 0) & 0x01) == 1

@@ -1,5 +1,9 @@
 package v2013
 
+import (
+	"github.com/mingkid/jtt808/message/body/v2013/extra0200"
+)
+
 type M0200Status uint32
 
 // ACCOn ACC开
@@ -30,6 +34,21 @@ func (s M0200Status) IsOperation() bool {
 // IsEncrypt 加密
 func (s M0200Status) IsEncrypt() bool {
 	return ((s >> 5) & 0x01) == 1
+}
+
+func (s M0200Status) LoadStatus() extra0200.LoadStatus {
+	bit8 := ((s >> 8) & 0x01) == 1
+	bit9 := ((s >> 9) & 0x01) == 1
+	status := 00
+
+	if bit8 {
+		status += 1
+	}
+	if bit9 {
+		status += 10
+	}
+
+	return extra0200.LoadStatusMap[status]
 }
 
 // IsOilChannelNormal 油路正常
