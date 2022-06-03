@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"time"
 
 	"golang.org/x/text/encoding/simplifiedchinese"
 	"golang.org/x/text/transform"
@@ -104,26 +103,6 @@ func (er *ErrReader) ReadBCD(length int) string {
 	return bcd
 }
 
-func (er *ErrReader) ReadBCDTime() time.Time {
-	if er.R.Len() < 6 {
-		er.Err = fmt.Errorf("时间bcd长度不足六位")
-		return time.Time{}
-	}
-
-	var buf [6]byte
-	n, err := er.R.Read(buf[:])
-	if err != nil {
-		er.Err = err
-		return time.Time{}
-	}
-
-	if n != len(buf) {
-		er.Err = io.ErrUnexpectedEOF
-		return time.Time{}
-	}
-	return fromBCDTime(buf[:])
-}
-
 func (er *ErrReader) ReadUint16() uint16 {
 	var data uint16
 	if er.Err != nil {
@@ -167,45 +146,4 @@ func (er *ErrReader) ReadString(size int) string {
 	}
 	data, er.Err = er.R.ReaderString(size)
 	return data
-}
-
-// 转为time.Time
-func fromBCDTime(bcd []byte) time.Time {
-	if len(bcd) != 6 {
-		fmt.Println("时间长度BCD不足六位")
-		return time.Time{}
-	}
-	t, err := time.ParseInLocation(
-		"20060102150405", "20"+bcdToString(bcd), time.Local)
-	if err != nil {
-		return time.Time{}
-	}
-	return t
-}
-
-func bcdToString(data []byte, ignorePadding ...bool) string {
-	for {
-		if len(data) == 0 {
-			return ""
-		}
-		if data[0] != 0 {
-			break
-		}
-		data = data[1:]
-	}
-
-	var b []byte
-	for i := 0; i < len(data); i++ {
-		b = append(b, data[i]&0xf0>>4+'0')
-		b = append(b, data[i]&0x0f+'0')
-	}
-
-	if len(ignorePadding) == 0 || !ignorePadding[0] {
-		for idx := range b {
-			if b[idx] != '0' {
-				return string(b[idx:])
-			}
-		}
-	}
-	return string(b)
 }

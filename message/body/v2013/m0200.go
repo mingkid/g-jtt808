@@ -2,6 +2,7 @@ package v2013
 
 import (
 	"io"
+	"math"
 	"time"
 
 	jt808b "github.com/mingkid/g-jtt808/binary"
@@ -20,20 +21,20 @@ type M0200 struct {
 	RawExtras    []byte `jtt808:"0,raw"`
 }
 
-func (m M0200) Latitude() uint32 {
-	return m.RawLatitude
+func (m M0200) Latitude() float64 {
+	return float64(m.RawLatitude) / math.Pow(10, 6)
 }
 
-func (m M0200) Longitude() uint32 {
-	return m.RawLongitude
+func (m M0200) Longitude() float64 {
+	return float64(m.RawLongitude) / math.Pow(10, 6)
 }
 
 func (m M0200) Altitude() uint16 {
 	return m.RawAltitude
 }
 
-func (m M0200) Speed() uint16 {
-	return m.RawSpeed
+func (m M0200) Speed() float64 {
+	return float64(m.RawSpeed) / math.Pow(10, 1)
 }
 
 func (m M0200) Direction() uint16 {
@@ -41,7 +42,10 @@ func (m M0200) Direction() uint16 {
 }
 
 func (m M0200) Time() (t time.Time) {
-	t, _ = time.Parse(time.RFC3339, m.RawTime)
+	t, err := time.ParseInLocation("20060102150405", "20"+m.RawTime, time.Local)
+	if err != nil {
+		t = time.Time{}
+	}
 	return
 }
 

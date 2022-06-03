@@ -6,16 +6,16 @@ import (
 
 type Extra map[byte][]byte
 
-func (e Extra) Mileage() uint32 {
-	return binary.BigEndian.Uint32(e[0x01])
+func (e Extra) Mileage() float64 {
+	return float64(binary.BigEndian.Uint32(e[0x01])) / 10
 }
 
-func (e Extra) Oil() uint16 {
-	return binary.BigEndian.Uint16(e[0x02])
+func (e Extra) Oil() float64 {
+	return float64(binary.BigEndian.Uint32(e[0x02])) / 10
 }
 
-func (e Extra) Speed() uint16 {
-	return binary.BigEndian.Uint16(e[0x03])
+func (e Extra) Speed() float64 {
+	return float64(binary.BigEndian.Uint16(e[0x03])) / 10
 }
 
 func (e Extra) ConformWarnID() uint16 {
