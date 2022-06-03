@@ -17,8 +17,14 @@ func (d Decoder) Decode(b []byte) (err error) {
 	er := binary.ErrReader{R: binary.NewReader(b)}
 
 	v := reflect.ValueOf(d.msg).Elem()
-	d.decode(v.FieldByName("Head"), er)
-	d.decode(v.FieldByName("Body"), er)
+	hv := v.FieldByName("Head")
+	bv := v.FieldByName("Body")
+
+	d.decode(hv, er)
+	if bv.Kind() == reflect.Ptr && bv.IsNil() {
+		return er.Err
+	}
+	d.decode(bv, er)
 
 	return er.Err
 }
