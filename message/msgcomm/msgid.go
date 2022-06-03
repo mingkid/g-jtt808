@@ -1,5 +1,9 @@
 package msgcomm
 
+import (
+	"encoding/binary"
+)
+
 // MsgID 消息ID
 type MsgID uint16
 
@@ -25,3 +29,7 @@ const (
 	// TermHeartbeat 终端心跳
 	TermHeartbeat MsgID = 0x0002
 )
+
+func ExtractMsgID(b []byte) MsgID {
+	return MsgID(binary.BigEndian.Uint16(b[1:3]))
+}

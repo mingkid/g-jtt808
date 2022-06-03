@@ -1,5 +1,7 @@
 package v2013
 
+import "github.com/mingkid/g-jtt808/message/msgcomm"
+
 type M8001 struct {
 	RawSerialNumber uint16 `jtt808:""`
 	RawMsgID        uint16 `jtt808:""`
@@ -10,8 +12,8 @@ func (m M8001) SerialNumber() uint16 {
 	return m.RawSerialNumber
 }
 
-func (m M8001) MsgID() uint16 {
-	return m.RawMsgID
+func (m M8001) MsgID() msgcomm.MsgID {
+	return msgcomm.MsgID(m.RawMsgID)
 }
 
 func (m M8001) Result() M8001Result {
@@ -23,8 +25,8 @@ func (m *M8001) SetSerialNumber(number uint16) *M8001 {
 	return m
 }
 
-func (m *M8001) SetMsgID(id uint16) *M8001 {
-	m.RawMsgID = id
+func (m *M8001) SetMsgID(id msgcomm.MsgID) *M8001 {
+	m.RawMsgID = uint16(id)
 	return m
 }
 
