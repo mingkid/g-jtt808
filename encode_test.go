@@ -26,8 +26,8 @@ func TestEncoder_M8001(t *testing.T) {
 	}
 
 	//	分包
-	msg.Head.BodyProperty = 0
-	msg.Head.BodyProperty = msg.Head.BodyProperty.SetIsSub().(hv2013.MsgBodyProperty)
+	msg.Head.BodyProperty.Raw = 0
+	msg.Head.BodyProperty.SetIsSub()
 	msg.Head.PackagePacking = &hv2013.MsgPackagePacking{}
 	msg.Head.PackagePacking.SetTotal(1).SetSerialNum(1)
 

@@ -10,7 +10,7 @@ import (
 	"github.com/mingkid/g-jtt808/message/msgcomm"
 )
 
-func TestDecoder_M0100(t *testing.T) {
+func TestDecoder_V2013_M0100(t *testing.T) {
 	var msg message.Message[hv2013.MsgHead, bv2013.M0100]
 	d := NewDecoder(&msg)
 	_ = d.Decode([]byte{126, 1, 0, 0, 39, 1, 48, 81, 25, 38, 117, 0, 128, 0, 44, 1, 44, 55, 48, 49, 49, 49, 66, 83, 74, 45, 65, 54, 66, 68, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49, 49, 57, 50, 54, 55, 53, 0, 0, 0, 131, 126})
@@ -55,7 +55,7 @@ func TestDecoder_M0100(t *testing.T) {
 	}
 }
 
-func TestDecoder_M0102(t *testing.T) {
+func TestDecoder_V2013_M0102(t *testing.T) {
 	var msg message.Message[hv2013.MsgHead, bv2013.M0102]
 	d := NewDecoder(&msg)
 	_ = d.Decode([]byte{126, 1, 2, 0, 32, 1, 48, 81, 25, 99, 56, 0, 106, 55, 54, 50, 54, 102, 53, 49, 57, 56, 48, 53, 51, 102, 98, 50, 99, 48, 49, 100, 100, 48, 101, 98, 101, 97, 100, 101, 54, 48, 99, 102, 51, 109, 126})
@@ -82,7 +82,7 @@ func TestDecoder_M0102(t *testing.T) {
 	}
 }
 
-func TestDecoder_M0200(t *testing.T) {
+func TestDecoder_V2013_M0200(t *testing.T) {
 	var msg message.Message[hv2013.MsgHead, bv2013.M0200]
 	d := NewDecoder(&msg)
 	_ = d.Decode([]byte{126, 2, 0, 0, 56, 1, 48, 81, 25, 38, 117, 0, 10, 0, 0, 0, 0, 0, 12, 0, 3, 2, 127, 135, 26, 7, 79, 186, 202, 0, 0, 0, 116, 0, 150, 34, 3, 36, 18, 37, 53, 1, 4, 0, 0, 9, 186, 43, 4, 5, 193, 5, 193, 48, 1, 29, 49, 1, 29, 0, 4, 0, 206, 5, 193, 3, 2, 0, 116, 203, 126})
@@ -190,7 +190,7 @@ func TestDecoder_M0200(t *testing.T) {
 	}
 }
 
-func TestDecoder_M0002(t *testing.T) {
+func TestDecoder_V2013_M0002(t *testing.T) {
 	var msg message.Message[hv2013.MsgHead, *interface{}]
 	d := NewDecoder(&msg)
 	_ = d.Decode([]byte{126, 0, 2, 0, 0, 1, 48, 81, 25, 38, 117, 1, 56, 17, 126})

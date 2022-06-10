@@ -41,9 +41,9 @@ func (d Decoder) decode(v reflect.Value, r binary.ErrReader) {
 		case reflect.Uint32:
 			fv.SetUint(uint64(r.ReadUint32()))
 		case reflect.String:
-			d.decodeString(r, fv, v.Type().Field(i))
+			d.decodeString(r, fv, v.Type().Field(i), v)
 		case reflect.Slice:
-			d.decodeSlice(r, fv, v.Type().Field(i))
+			d.decodeSlice(r, fv, v.Type().Field(i), v)
 		case reflect.Struct:
 			d.decode(fv, r)
 		case reflect.Ptr:
@@ -55,12 +55,12 @@ func (d Decoder) decode(v reflect.Value, r binary.ErrReader) {
 	}
 }
 
-func (d Decoder) decodeString(r binary.ErrReader, v reflect.Value, f reflect.StructField) {
+func (d Decoder) decodeString(r binary.ErrReader, v reflect.Value, f reflect.StructField, parent reflect.Value) {
 	var (
 		t      string
 		length int
 	)
-	t, length, r.Err = Tag(f)
+	t, length, r.Err = Tag(f, parent)
 
 	switch t {
 	case "bcd":
@@ -70,9 +70,9 @@ func (d Decoder) decodeString(r binary.ErrReader, v reflect.Value, f reflect.Str
 	}
 }
 
-func (d Decoder) decodeSlice(r binary.ErrReader, v reflect.Value, f reflect.StructField) {
+func (d Decoder) decodeSlice(r binary.ErrReader, v reflect.Value, f reflect.StructField, parent reflect.Value) {
 	var length int
-	if _, length, r.Err = Tag(f); length == 0 {
+	if _, length, r.Err = Tag(f, parent); length == 0 {
 		v.Set(reflect.ValueOf(r.ReadBytes(r.R.Len())))
 	} else {
 		v.Set(reflect.ValueOf(r.ReadBytes(length)))

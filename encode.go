@@ -37,12 +37,10 @@ func (e Encoder) Encode(calcChecksumHandle func([]byte) byte) ([]byte, error) {
 
 func (e Encoder) encodeHead(v reflect.Value, bodyLen uint16) ([]byte, error) {
 	pv := v.FieldByName("BodyProperty")
-	p, err := pv.Interface().(head.BodyProperty).SetBodyLength(bodyLen)
+	err := pv.Addr().Interface().(head.BodyProperty).SetBodyLength(bodyLen)
 	if err != nil {
 		return nil, err
 	}
-	pv.Set(reflect.ValueOf(p))
-
 	return e.encode(v), nil
 }
 
@@ -58,7 +56,7 @@ func (e Encoder) encode(v reflect.Value) []byte {
 		case reflect.Uint8:
 			ew.WriteUint8(uint8(fv.Uint()))
 		case reflect.String:
-			e.encodeString(fv.String(), ew, v.Type().Field(i))
+			e.encodeString(fv.String(), ew, v.Type().Field(i), v)
 		case reflect.Struct:
 			ew.Write(e.encode(fv))
 		case reflect.Ptr:
@@ -72,12 +70,12 @@ func (e Encoder) encode(v reflect.Value) []byte {
 	return ew.W.Bytes()
 }
 
-func (e Encoder) encodeString(s string, w binary.ErrWrite, f reflect.StructField) {
+func (e Encoder) encodeString(s string, w binary.ErrWrite, f reflect.StructField, parent reflect.Value) {
 	var (
 		t      string
 		length int
 	)
-	t, length, w.Err = Tag(f)
+	t, length, w.Err = Tag(f, parent)
 
 	// 根据Tag中的定义，为string类型的数据做不同的bytes转换
 	switch t {
