@@ -20,6 +20,9 @@ const (
 	// TermLocationRepose 终端位置汇报
 	TermLocationRepose = 0x0200
 
+	// TermLocationBatch 终端位置批量上传
+	TermLocationBatch = 0x0704
+
 	// TermAuth 终端鉴权
 	TermAuth = 0x0102
 
