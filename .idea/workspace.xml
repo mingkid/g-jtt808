@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7c1f5f02-cb52-423b-95ed-ba6644cb48f6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/msg.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/msg/binary.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/common/frame.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msg/encrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/common/encrypt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msg/msgid.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/common/msgid.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msg_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/head.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/head.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/head_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/head_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0001.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0001.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0001_result.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0001_result.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0001_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0001_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0100.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0100.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0100_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0100_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0102.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0102.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0102_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0102_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0200.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0200.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0200_extra.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0200_extra.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0200_extra_status.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0200_extra_status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0200_extra_warn.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0200_extra_warn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0200_status.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0200_status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0200_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0200_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0200_warn.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0200_warn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0704.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0704.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m0704_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m0704_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m8001.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m8001.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m8001_result.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m8001_result.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m8001_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m8001_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m8100.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m8100.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m8100_result.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m8100_result.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/m8100_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/m8100_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2013/package_packing.go" beforeDir="false" afterPath="$PROJECT_DIR$/msg/package_packing.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2N4zILPXRvGb99Hs1VpUO5Zw6Ag" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/kwaiming/Documents/Project/kwangin-vls/src/g-jtt808"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
