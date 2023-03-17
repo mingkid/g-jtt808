@@ -88,6 +88,9 @@ func (m TermMsg) Decode(b []byte) (err error) {
 	if err = m.head.Decode(buf[1:]); err != nil {
 		return
 	}
+	if m.body == nil {
+		return
+	}
 	if err = m.body.Decode(buf[m.head.ByteLength()+1 : len(buf)-2]); err != nil {
 		return
 	}
