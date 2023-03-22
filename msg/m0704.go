@@ -25,16 +25,19 @@ func (m M0704) Items() ([]M0200, error) {
 	for i := uint16(0); i < m.Count(); i++ {
 		var m0200 M0200
 
+		// 获取数据长度
 		length, err := r.ReadUint16()
 		if err != nil {
 			return nil, err
 		}
 
+		// 读取一定长度的定位数据
 		m0200Buf, err := r.ReadBytes(int(length))
 		if err != nil {
 			return nil, err
 		}
 
+		// 解析定位数据
 		err = m0200.Decode(m0200Buf)
 		if err != nil {
 			return nil, err

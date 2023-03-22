@@ -29,17 +29,17 @@ func TestM0704_Decode(t *testing.T) {
 	if res := locationA.Status(); res != 786435 {
 		t.Fatalf("消息包状态解析错误，应为%d，实际为%d", 786435, res)
 	}
-	if res := locationA.Latitude(); res != 41986752 {
-		t.Fatalf("消息包纬度解析错误，应为%d，实际为%d", 41986752, res)
+	if res := locationA.Latitude(); res != 41.986752 {
+		t.Fatalf("消息包纬度解析错误，应为%f，实际为%f", 41.986752, res)
 	}
-	if res := locationA.Longitude(); res != 122801261 {
-		t.Fatalf("消息包经度解析错误，应为%d，实际为%d", 122801261, res)
+	if res := locationA.Longitude(); res != 122.801261 {
+		t.Fatalf("消息包经度解析错误，应为%f，实际为%f", 122.801261, res)
 	}
 	if res := locationA.Altitude(); res != 0 {
 		t.Fatalf("消息包高程解析错误，应为%d，实际为%d", 0, res)
 	}
-	if res := locationA.Speed(); res != 263 {
-		t.Fatalf("消息包速度解析错误，应为%d，实际为%d", 263, res)
+	if res := locationA.Speed(); res != 26.3 {
+		t.Fatalf("消息包速度解析错误，应为%f，实际为%f", 26.3, res)
 	}
 	if res := locationA.Direction(); res != 313 {
 		t.Fatalf("消息包方向解析错误，应为%d，实际为%d", 313, res)
