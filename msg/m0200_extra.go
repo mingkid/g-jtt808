@@ -11,7 +11,7 @@ func (e M0200Extra) Mileage() float32 {
 }
 
 func (e M0200Extra) Oil() float32 {
-	return float32(binary.BigEndian.Uint32(e[0x02])) / 10
+	return float32(binary.BigEndian.Uint16(e[0x02])) / 10
 }
 
 func (e M0200Extra) Speed() float32 {
