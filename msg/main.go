@@ -125,13 +125,14 @@ func (m TermMsg) unescape(data []byte) (res []byte, err error) {
 			case 0x01:
 				// 根据规则 0x7d 0x01 转换为 0x7d
 				writer.WriteByte(common.Escape)
+				continue
 			case 0x02:
-				// 根据规则 0x7d 0x01 转换为 0x7e
+				// 根据规则 0x7d 0x02 转换为 0x7e
 				writer.WriteByte(common.IdentityBit)
+				continue
 			default:
 				return nil, fmt.Errorf("0x7d后字节不符合规则")
 			}
-
 		}
 
 		// 不需要转义的字节直接写入
