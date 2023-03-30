@@ -1,6 +1,7 @@
 package msg
 
 import (
+	"fmt"
 	"github.com/mingkid/g-jtt808/binary"
 )
 
@@ -66,25 +67,25 @@ func (m *M0100) Decode(b []byte) (err error) {
 	r := binary.NewReader(b)
 
 	if m.provincialID, err = r.ReadUint16(); err != nil {
-		return err
+		return fmt.Errorf("省域ID解码失败")
 	}
 	if m.cityID, err = r.ReadUint16(); err != nil {
-		return err
+		return fmt.Errorf("市县域ID解码失败")
 	}
 	if m.manufacturerID, err = r.ReadBytes(5); err != nil {
-		return err
+		return fmt.Errorf("制造商ID解码失败")
 	}
 	if m.termModel, err = r.ReadBytes(20); err != nil {
-		return err
+		return fmt.Errorf("终端型号解码失败")
 	}
 	if m.termID, err = r.ReadBytes(7); err != nil {
-		return err
+		return fmt.Errorf("终端ID解码失败")
 	}
 	if m.licensePlateColor, err = r.ReadByte(); err != nil {
-		return err
+		return fmt.Errorf("车牌颜色解码失败")
 	}
 	if m.licensePlate, err = r.ReadAllBytes(); err != nil {
-		return err
+		return fmt.Errorf("车牌解码失败")
 	}
-	return nil
+	return
 }

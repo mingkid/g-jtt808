@@ -1,6 +1,7 @@
 package msg
 
 import (
+	"fmt"
 	"github.com/mingkid/g-jtt808/binary"
 )
 
@@ -51,13 +52,13 @@ func (m *M0704) Decode(b []byte) (err error) {
 	r := binary.NewReader(b)
 
 	if m.count, err = r.ReadUint16(); err != nil {
-		return
+		return fmt.Errorf("批量位置汇报消息数量解码失败")
 	}
 	if m.type_, err = r.ReadByte(); err != nil {
-		return
+		return fmt.Errorf("批量位置汇报消息类型解码失败")
 	}
 	if m.items, err = r.ReadAllBytes(); err != nil {
-		return
+		return fmt.Errorf("批量位置汇报消息内容解码失败")
 	}
 	return
 }

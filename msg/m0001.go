@@ -1,6 +1,7 @@
 package msg
 
 import (
+	"fmt"
 	"github.com/mingkid/g-jtt808/binary"
 	"github.com/mingkid/g-jtt808/msg/common"
 )
@@ -40,22 +41,19 @@ func (m *M0001) Decode(b []byte) (err error) {
 
 	// Read the serial number from the buffer
 	if m.serialNo, err = r.ReadUint16(); err != nil {
-		return err
+		return fmt.Errorf("解码应答流水号失败")
 	}
-
 	// Read the message ID from the buffer
 	if m.msgID, err = r.ReadUint16(); err != nil {
-		return err
+		return fmt.Errorf("解码应答消息ID失败")
 	}
-
 	// Read the result from the buffer
 	if m.result, err = r.ReadByte(); err != nil {
-		return err
+		return fmt.Errorf("解码处理结果失败")
 	}
-
 	// Read the error code from the buffer
 	if m.errorCode, err = r.ReadUint16(); err != nil {
-		return err
+		return fmt.Errorf("解码错误代码失败")
 	}
 
 	return

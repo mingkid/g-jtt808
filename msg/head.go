@@ -2,6 +2,7 @@ package msg
 
 import (
 	"errors"
+	"fmt"
 	"github.com/mingkid/g-jtt808/binary"
 	"github.com/mingkid/g-jtt808/msg/common"
 )
@@ -60,16 +61,16 @@ func (h *Head) ByteLength() (length int) {
 func (h *Head) Decode(b []byte) (err error) {
 	r := binary.NewReader(b)
 	if h.msgID, err = r.ReadUint16(); err != nil {
-		return
+		return fmt.Errorf("消息ID解码失败")
 	}
 	if h.property, err = r.ReadUint16(); err != nil {
-		return
+		return fmt.Errorf("消息体属性解码失败")
 	}
 	if h.phone, err = r.ReadBCD(6); err != nil {
-		return
+		return fmt.Errorf("终端手机号解码失败")
 	}
 	if h.serialNum, err = r.ReadUint16(); err != nil {
-		return
+		return fmt.Errorf("消息流水号解码失败")
 	}
 
 	return nil
@@ -87,23 +88,21 @@ func (h *Head) Encode(len uint16) (res []byte, err error) {
 
 	// 编码
 	if err = w.WriteUint16(h.msgID); err != nil {
-		return
+		return nil, fmt.Errorf("消息ID编码失败")
 	}
 	if err = w.WriteUint16(uint16(prop)); err != nil {
-		return
+		return nil, fmt.Errorf("消息体属性编码失败")
 	}
 	if err = w.WriteBCD(h.phone, 6); err != nil {
-		return
+		return nil, fmt.Errorf("终端手机号编码失败")
 	}
 	if err = w.WriteUint16(h.serialNum); err != nil {
-		return
+		return nil, fmt.Errorf("消息流水号编码失败")
 	}
 	if h.packagePacking != nil {
 		var ppBuf []byte
 		ppBuf, err = h.packagePacking.Encode()
-		if err = w.Write(ppBuf); err != nil {
-			return
-		}
+		_ = w.Write(ppBuf)
 	}
 
 	res = w.Bytes()

@@ -1,6 +1,9 @@
 package msg
 
-import "github.com/mingkid/g-jtt808/binary"
+import (
+	"fmt"
+	"github.com/mingkid/g-jtt808/binary"
+)
 
 type MsgPackagePacking struct {
 	total     uint16
@@ -32,10 +35,10 @@ func (p *MsgPackagePacking) SetSerialNum(SerialNum uint16) *MsgPackagePacking {
 func (p MsgPackagePacking) Encode() (b []byte, err error) {
 	w := binary.NewWriter()
 	if err = w.WriteUint16(p.total); err != nil {
-		return
+		return nil, fmt.Errorf("消息包总数编码失败")
 	}
 	if err = w.WriteUint16(p.serialNum); err != nil {
-		return
+		return nil, fmt.Errorf("包序号编码失败")
 	}
 	b = w.Bytes()
 	return

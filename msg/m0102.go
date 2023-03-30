@@ -1,6 +1,7 @@
 package msg
 
 import (
+	"fmt"
 	"github.com/mingkid/g-jtt808/binary"
 )
 
@@ -21,7 +22,7 @@ func (m *M0102) Decode(b []byte) (err error) {
 	r := binary.NewReader(b)
 
 	if m.token, err = r.ReadAllBytes(); err != nil {
-		return err
+		return fmt.Errorf("鉴权码解码失败")
 	}
-	return nil
+	return
 }

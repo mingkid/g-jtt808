@@ -1,6 +1,7 @@
 package msg
 
 import (
+	"fmt"
 	"github.com/mingkid/g-jtt808/binary"
 	"github.com/mingkid/g-jtt808/msg/common"
 )
@@ -42,13 +43,13 @@ func (m M8001) Encode() (res []byte, err error) {
 	w := binary.NewWriter()
 
 	if err = w.WriteUint16(m.serialNumber); err != nil {
-		return
+		return nil, fmt.Errorf("平台通用响应消息流水号编码失败")
 	}
 	if err = w.WriteUint16(m.msgID); err != nil {
-		return
+		return nil, fmt.Errorf("平台通用响应消息ID编码失败")
 	}
 	if err = w.WriteUint8(m.result); err != nil {
-		return
+		return nil, fmt.Errorf("平台通用响应结果编码失败")
 	}
 
 	res = w.Bytes()

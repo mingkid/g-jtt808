@@ -81,10 +81,11 @@ type TermMsg struct {
 	body MsgDecoder
 }
 
+// Decode 解码消息。转义的消息不符合规范时会报错。
 func (m TermMsg) Decode(b []byte) (err error) {
 	var buf []byte
 
-	buf, err = m.unescape(b)
+	buf, err = m.Unescape(b)
 	if err = m.head.Decode(buf[1:]); err != nil {
 		return
 	}
@@ -97,7 +98,9 @@ func (m TermMsg) Decode(b []byte) (err error) {
 	return
 }
 
-func (m TermMsg) unescape(data []byte) (res []byte, err error) {
+// Unescape 反转义。根据规则 0x7d 0x01 转换为 0x7d，0x7d 0x02 转换为 0x7e。当0x7d 后一位字节不是 0x01 或 0x02 会报错。
+// 0x7d 后一位字节不存在时，会报错。
+func (m TermMsg) Unescape(data []byte) (res []byte, err error) {
 	var (
 		writer bytes.Buffer
 		b      byte
@@ -105,21 +108,20 @@ func (m TermMsg) unescape(data []byte) (res []byte, err error) {
 	)
 
 	for {
+		// 读取每一个字节，读取到结尾时终止循环
 		b, err = reader.ReadByte()
 		if err != nil {
 			if err == io.EOF {
 				break
 			}
-			return
 		}
 
 		if b == common.Escape {
-			// 处理需要转义的字节
-			// 读取 0x7d 后一位字节
+			// 处理需要转义的字节，读取 0x7d 后一位字节
 			var nb byte
 			nb, err = reader.ReadByte()
 			if err != nil {
-				return
+				return nil, fmt.Errorf("反转义时，0x7d后面不存在字节")
 			}
 			switch nb {
 			case 0x01:
@@ -131,15 +133,12 @@ func (m TermMsg) unescape(data []byte) (res []byte, err error) {
 				writer.WriteByte(common.IdentityBit)
 				continue
 			default:
-				return nil, fmt.Errorf("0x7d后字节不符合规则")
+				return nil, fmt.Errorf("0x7d后字节不符合规则，应为0x01或0x02, 实际为0x%x", nb)
 			}
 		}
 
 		// 不需要转义的字节直接写入
-		err = writer.WriteByte(b)
-		if err != nil {
-			return nil, err
-		}
+		writer.WriteByte(b)
 	}
 
 	return writer.Bytes(), nil
