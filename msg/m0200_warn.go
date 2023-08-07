@@ -1,47 +1,59 @@
 package msg
 
+// M0200Warn JT/T808消息类型0x0200的报警预警标志位
 type M0200Warn uint32
 
+// Emergency 紧急报警
 func (w M0200Warn) Emergency() bool {
 	return ((w >> 0) & 0x01) == 1
 }
 
+// OverSpeed 超速
 func (w M0200Warn) OverSpeed() bool {
 	return ((w >> 1) & 0x01) == 1
 }
 
+// Tired 疲劳驾驶
 func (w M0200Warn) Tired() bool {
 	return ((w >> 2) & 0x01) == 1
 }
 
+// Danger 危险驾驶行为
 func (w M0200Warn) Danger() bool {
 	return ((w >> 3) & 0x01) == 1
 }
 
+// TermFault GNSS模块驾驶行为
 func (w M0200Warn) TermFault() bool {
 	return ((w >> 4) & 0x01) == 1
 }
 
+// AerialUnConn GNSS天线未接/被剪断
 func (w M0200Warn) AerialUnConn() bool {
 	return ((w >> 5) & 0x01) == 1
 }
 
+// AerialShortCircuit GNSS天线短路
 func (w M0200Warn) AerialShortCircuit() bool {
 	return ((w >> 6) & 0x01) == 1
 }
 
+// TermUndervoltage 终端主电源欠压
 func (w M0200Warn) TermUndervoltage() bool {
 	return ((w >> 7) & 0x01) == 1
 }
 
+// TermPowerFail 终端主电源掉电
 func (w M0200Warn) TermPowerFail() bool {
 	return ((w >> 8) & 0x01) == 1
 }
 
+// LCDFault 终端LCD或显示器故障
 func (w M0200Warn) LCDFault() bool {
 	return ((w >> 9) & 0x01) == 1
 }
 
+// TTSFault TTS模块故障
 func (w M0200Warn) TTSFault() bool {
 	return ((w >> 10) & 0x01) == 1
 }
@@ -51,14 +63,17 @@ func (w M0200Warn) CameraFault() bool {
 	return ((w >> 11) & 0x01) == 1
 }
 
+// ICCardFault 道路运输证IC卡模块故障
 func (w M0200Warn) ICCardFault() bool {
 	return ((w >> 12) & 0x01) == 1
 }
 
+// PreOverSpeed 超速
 func (w M0200Warn) PreOverSpeed() bool {
 	return ((w >> 13) & 0x01) == 1
 }
 
+// PreTired 疲劳驾驶预警
 func (w M0200Warn) PreTired() bool {
 	return ((w >> 14) & 0x01) == 1
 }
