@@ -78,6 +78,21 @@ func (w M0200Warn) PreTired() bool {
 	return ((w >> 14) & 0x01) == 1
 }
 
+// PreIllegally 违规行驶预警
+func (w M0200Warn) PreIllegally() bool {
+	return ((w >> 15) & 0x01) == 1
+}
+
+// PreTirePressure 胎压预警
+func (w M0200Warn) PreTirePressure() bool {
+	return ((w >> 16) & 0x01) == 1
+}
+
+// RightBlindSpot 右转盲区异常报警
+func (w M0200Warn) RightBlindSpot() bool {
+	return ((w >> 17) & 0x01) == 1
+}
+
 // TotalDriveTimeout 累计驾驶时长超时
 func (w M0200Warn) TotalDriveTimeout() bool {
 	return ((w >> 18) & 0x01) == 1
