@@ -8,18 +8,18 @@ import (
 type M0200Extra map[byte][]byte
 
 // Mileage 0x01键 里程值
-func (e M0200Extra) Mileage() float32 {
-	return float32(binary.BigEndian.Uint32(e[0x01])) / 10
+func (e M0200Extra) Mileage() uint32 {
+	return binary.BigEndian.Uint32(e[0x01])
 }
 
 // Oil 0x02键 油量值
-func (e M0200Extra) Oil() float32 {
-	return float32(binary.BigEndian.Uint16(e[0x02])) / 10
+func (e M0200Extra) Oil() uint16 {
+	return binary.BigEndian.Uint16(e[0x02])
 }
 
 // Speed 0x03键 速度值
-func (e M0200Extra) Speed() float32 {
-	return float32(binary.BigEndian.Uint16(e[0x03])) / 10
+func (e M0200Extra) Speed() uint16 {
+	return binary.BigEndian.Uint16(e[0x03])
 }
 
 // ConformWarnID 0x04键 报警事件ID
