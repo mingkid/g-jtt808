@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// M0200 JT/T808 0200 数据包
 type M0200 struct {
 	warn      uint32
 	status    uint32
@@ -18,34 +19,42 @@ type M0200 struct {
 	extras    []byte
 }
 
+// Warn 报警标志
 func (m M0200) Warn() M0200Warn {
 	return M0200Warn(m.warn)
 }
 
+// Status 状态
 func (m M0200) Status() M0200Status {
 	return M0200Status(m.status)
 }
 
-func (m M0200) Latitude() float64 {
-	return float64(m.latitude) / 1000000
+// Latitude 纬度（单位：度 * 10^6，精确到百万分之一度）
+func (m M0200) Latitude() uint32 {
+	return m.latitude
 }
 
-func (m M0200) Longitude() float64 {
-	return float64(m.longitude) / 1000000
+// Longitude 经度（单位：度 * 10^6，精确到百万分之一度）
+func (m M0200) Longitude() uint32 {
+	return m.longitude
 }
 
+// Altitude 高程（单位：米）
 func (m M0200) Altitude() uint16 {
 	return m.altitude
 }
 
-func (m M0200) Speed() float32 {
-	return float32(m.speed) / 10
+// Speed 速度（单位：0.1 公里/小时）
+func (m M0200) Speed() uint16 {
+	return m.speed
 }
 
+// Direction 方向（单位：度） 取值范围：0-359
 func (m M0200) Direction() uint16 {
 	return m.direction
 }
 
+// Time 定位时间
 func (m M0200) Time() (res time.Time, err error) {
 	r := binary.NewReader(m.time)
 
@@ -56,6 +65,7 @@ func (m M0200) Time() (res time.Time, err error) {
 	return time.ParseInLocation("20060102150405", "20"+timeStr, time.Local)
 }
 
+// Extras 附加信息
 func (m M0200) Extras() (result M0200Extra, err error) {
 	if len(m.extras) == 0 {
 		return
@@ -87,6 +97,7 @@ func (m M0200) Extras() (result M0200Extra, err error) {
 	return
 }
 
+// Decode 解码M0200数据包
 func (m *M0200) Decode(b []byte) (err error) {
 	r := binary.NewReader(b)
 
