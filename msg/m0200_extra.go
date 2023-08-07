@@ -27,6 +27,16 @@ func (e M0200Extra) ConformWarnID() uint16 {
 	return binary.BigEndian.Uint16(e[0x04])
 }
 
+// TirePressure 0x05键 胎压值
+func (e M0200Extra) TirePressure() uint16 {
+	return binary.BigEndian.Uint16(e[0x05])
+}
+
+// CabinTemperature 0x06键 车厢温度
+func (e M0200Extra) CabinTemperature() uint16 {
+	return binary.BigEndian.Uint16(e[0x06])
+}
+
 // OverSpeedWarn 0x11键 超速报警信息
 func (e M0200Extra) OverSpeedWarn() OverSpeedWarn {
 	return e[0x11]
