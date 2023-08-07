@@ -1,5 +1,6 @@
 package msg
 
+// M0200Status JT/T808消息类型0x0200的状态位定义
 type M0200Status uint32
 
 // ACCOn ACC开
