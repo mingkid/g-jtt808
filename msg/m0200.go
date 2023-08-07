@@ -26,20 +26,20 @@ func (m M0200) Status() M0200Status {
 	return M0200Status(m.status)
 }
 
-func (m M0200) Latitude() float64 {
-	return float64(m.latitude) / 1000000
+func (m M0200) Latitude() uint32 {
+	return m.latitude
 }
 
-func (m M0200) Longitude() float64 {
-	return float64(m.longitude) / 1000000
+func (m M0200) Longitude() uint32 {
+	return m.longitude
 }
 
 func (m M0200) Altitude() uint16 {
 	return m.altitude
 }
 
-func (m M0200) Speed() float32 {
-	return float32(m.speed) / 10
+func (m M0200) Speed() uint16 {
+	return m.speed
 }
 
 func (m M0200) Direction() uint16 {
