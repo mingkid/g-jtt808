@@ -7,11 +7,17 @@ type OverSpeedWarn []byte
 
 // PositionType 位置类型
 func (w OverSpeedWarn) PositionType() PositionType {
+	if len(w) == 0 {
+		return PositionType(0)
+	}
 	return PositionType(w[0])
 }
 
 // PositionID 区域或路段ID
 func (w OverSpeedWarn) PositionID() uint32 {
+	if len(w) < 2 {
+		return 0
+	}
 	return binary.BigEndian.Uint32(w[1:])
 }
 
@@ -20,16 +26,25 @@ type IOPositionWarn []byte
 
 // PositionType 位置类型
 func (w IOPositionWarn) PositionType() PositionType {
+	if len(w) == 0 {
+		return PositionType(0)
+	}
 	return PositionType(w[0])
 }
 
 // PositionID 区域或线路ID
 func (w IOPositionWarn) PositionID() uint32 {
+	if len(w) < 5 {
+		return 0
+	}
 	return binary.BigEndian.Uint32(w[1:4])
 }
 
 // Direction 方向
 func (w IOPositionWarn) Direction() IOType {
+	if len(w) < 6 {
+		return IOType(0)
+	}
 	return IOType(w[5])
 }
 
@@ -38,16 +53,25 @@ type DriveTooShortWarn []byte
 
 // RoadID 路段ID
 func (w DriveTooShortWarn) RoadID() uint32 {
+	if len(w) < 5 {
+		return 0
+	}
 	return binary.BigEndian.Uint32(w[0:4])
 }
 
 // DriveTime 路段行驶时间
 func (w DriveTooShortWarn) DriveTime() uint16 {
+	if len(w) < 6 {
+		return 0
+	}
 	return binary.BigEndian.Uint16(w[4:5])
 }
 
 // Result 结果
 func (w DriveTooShortWarn) Result() byte {
+	if len(w) < 7 {
+		return 0
+	}
 	return w[6]
 }
 
