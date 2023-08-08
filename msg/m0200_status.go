@@ -1,5 +1,6 @@
 package msg
 
+// M0200Status JT/T808消息类型0x0200的状态位定义
 type M0200Status uint32
 
 // ACCOn ACC开
@@ -30,6 +31,29 @@ func (s M0200Status) IsOperation() bool {
 // IsEncrypt 加密
 func (s M0200Status) IsEncrypt() bool {
 	return ((s >> 5) & 0x01) == 1
+}
+
+// EmergencyStop 紧急刹车
+func (s M0200Status) EmergencyStop() bool {
+	return ((s >> 6) & 0x01) == 1
+}
+
+// LaneDeparture 车道偏移
+func (s M0200Status) LaneDeparture() bool {
+	return ((s >> 7) & 0x01) == 1
+}
+
+// LoadStatus 荷载情况
+func (s M0200Status) LoadStatus() LoadStatus {
+	Is8thBit := (s>>8)&0x01 == 0
+	Is9thBit := (s>>9)&0x01 == 0
+	if !Is8thBit && Is9thBit {
+		return LoadStatusHalf // 01 表示半载
+	} else if Is8thBit && Is9thBit {
+		return LoadStatusFully // 11 表示满载
+	} else {
+		return LoadStatusEmpty // 00 10 表示空车
+	}
 }
 
 // IsOilChannelNormal 油路正常
@@ -91,3 +115,17 @@ func (s M0200Status) UsedGLONASS() bool {
 func (s M0200Status) UsedGalileo() bool {
 	return ((s >> 21) & 0x01) == 1
 }
+
+// TravelState 车辆处于行驶状态
+func (s M0200Status) TravelState() bool {
+	return ((s >> 22) & 0x01) == 1
+}
+
+// LoadStatus 荷载情况
+type LoadStatus uint8
+
+const (
+	LoadStatusEmpty LoadStatus = 0x00
+	LoadStatusHalf             = 0x01
+	LoadStatusFully            = 0x11
+)

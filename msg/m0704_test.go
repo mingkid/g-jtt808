@@ -29,17 +29,17 @@ func TestM0704_Decode(t *testing.T) {
 	if res := locationA.Status(); res != 786435 {
 		t.Fatalf("消息包状态解析错误，应为%d，实际为%d", 786435, res)
 	}
-	if res := locationA.Latitude(); res != 41.986752 {
-		t.Fatalf("消息包纬度解析错误，应为%f，实际为%f", 41.986752, res)
+	if res := locationA.Latitude(); res != 41986752 {
+		t.Fatalf("消息包纬度解析错误，应为%d，实际为%d", 41986752, res)
 	}
-	if res := locationA.Longitude(); res != 122.801261 {
-		t.Fatalf("消息包经度解析错误，应为%f，实际为%f", 122.801261, res)
+	if res := locationA.Longitude(); res != 122801261 {
+		t.Fatalf("消息包经度解析错误，应为%d，实际为%d", 122801261, res)
 	}
 	if res := locationA.Altitude(); res != 0 {
 		t.Fatalf("消息包高程解析错误，应为%d，实际为%d", 0, res)
 	}
-	if res := locationA.Speed(); res != 26.3 {
-		t.Fatalf("消息包速度解析错误，应为%f，实际为%f", 26.3, res)
+	if res := locationA.Speed(); res != 263 {
+		t.Fatalf("消息包速度解析错误，应为%d，实际为%d", 263, res)
 	}
 	if res := locationA.Direction(); res != 313 {
 		t.Fatalf("消息包方向解析错误，应为%d，实际为%d", 313, res)
@@ -49,8 +49,8 @@ func TestM0704_Decode(t *testing.T) {
 	if a != b {
 		t.Fatalf("消息包时间解析错误，应为%s，实际为%s", a, b)
 	}
-	if r, _ := locationA.Extras(); r.Mileage() != 2118.1 {
-		t.Fatalf("消息包附加消息里程解析错误，应为%f，实际为%f", 2118.1, r.Mileage())
+	if r, _ := locationA.Extras(); r.Mileage() != 21181 {
+		t.Fatalf("消息包附加消息里程解析错误，应为%d，实际为%d", 21181, r.Mileage())
 	}
 	if r, _ := locationA.Extras(); r.Analog() != 93848984 {
 		t.Fatalf("消息包附加消息模拟量解析错误，应为%d，实际为%d", 93848984, r.Analog())
@@ -61,7 +61,7 @@ func TestM0704_Decode(t *testing.T) {
 	if r, _ := locationA.Extras(); r.GNSSQty() != 29 {
 		t.Fatalf("消息包附加消息GNSS卫星数量解析错误，应为%d，实际为%d", 29, r.GNSSQty())
 	}
-	if r, _ := locationA.Extras(); r.Speed() != 26.3 {
-		t.Fatalf("消息包附加消息速度解析错误，应为%f，实际为%f", 26.3, r.Speed())
+	if r, _ := locationA.Extras(); r.Speed() != 263 {
+		t.Fatalf("消息包附加消息速度解析错误，应为%d，实际为%d", 263, r.Speed())
 	}
 }
