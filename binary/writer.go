@@ -34,7 +34,7 @@ func (w Writer) WriteUint16(data uint16) (err error) {
 
 // WriteUint64 写入64位数据
 func (w Writer) WriteUint64(data uint64) (err error) {
-	var temp = make([]byte, 2)
+	var temp = make([]byte, 8)
 	binary.BigEndian.PutUint64(temp[:], data)
 	_, err = w.b.Write(temp)
 	return
