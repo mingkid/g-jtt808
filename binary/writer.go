@@ -82,3 +82,15 @@ func NewWriter() *Writer {
 		b: &bytes.Buffer{},
 	}
 }
+
+// Uint8ToBytesMap uint8转换为字节映射
+func Uint8ToBytesMap(value uint8) map[byte][]byte {
+	bytes_ := []byte{value}
+
+	bytesMap := make(map[byte][]byte)
+	for i, b := range bytes_ {
+		bytesMap[byte(i)] = []byte{b}
+	}
+
+	return bytesMap
+}
