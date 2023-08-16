@@ -32,6 +32,14 @@ func (w Writer) WriteUint16(data uint16) (err error) {
 	return
 }
 
+// WriteUint64 写入64位数据
+func (w Writer) WriteUint64(data uint64) (err error) {
+	var temp = make([]byte, 2)
+	binary.BigEndian.PutUint64(temp[:], data)
+	_, err = w.b.Write(temp)
+	return
+}
+
 // WriteBCD 写入BCD编码
 func (w *Writer) WriteBCD(s string, length int) error {
 	// 长度不够补位
@@ -81,6 +89,19 @@ func NewWriter() *Writer {
 	return &Writer{
 		b: &bytes.Buffer{},
 	}
+}
+
+// Uint32ToBytesMap uint32转换为字节映射
+func Uint32ToBytesMap(value uint32) map[byte][]byte {
+	bytes_ := make([]byte, 4)
+	binary.BigEndian.PutUint32(bytes_, value)
+
+	bytesMap := make(map[byte][]byte)
+	for i, b := range bytes_ {
+		bytesMap[byte(i)] = []byte{b}
+	}
+
+	return bytesMap
 }
 
 // Uint8ToBytesMap uint8转换为字节映射
